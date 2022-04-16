@@ -10,6 +10,9 @@ import com.example.atb.R;
 import com.example.atb.account.userscard.UserDTO;
 import com.example.atb.account.userscard.UsersAdapter;
 import com.example.atb.application.HomeApplication;
+import com.example.atb.databinding.ActivityMainBinding;
+import com.example.atb.databinding.ActivityUsersBinding;
+import com.example.atb.network.BaseActivity;
 import com.example.atb.network.account.AccountService;
 import com.example.atb.network.account.dto.AccountResponseDTO;
 import com.example.atb.security.JwtSecurityService;
@@ -24,14 +27,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UsersActivity extends AppCompatActivity {
+public class UsersActivity extends BaseActivity {
+    ActivityUsersBinding binding;
 
     private UsersAdapter adapter;
     private RecyclerView rcvUsers;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_users);
+        binding=ActivityUsersBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        setActivityTitle("Users");
 
         rcvUsers = findViewById(R.id.rcvUsers);
         rcvUsers.setHasFixedSize(true);

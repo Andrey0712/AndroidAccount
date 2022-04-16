@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Atb">
         <activity
+            android:name=".network.BaseActivity"
+            android:exported="true" />
+        <activity
             android:name=".account.UsersActivity"
             android:exported="true" />
         <activity

@@ -19,6 +19,9 @@ import android.widget.TextView;
 import com.example.atb.account.LoginActivity;
 import com.example.atb.account.RegisterActivity;
 import com.example.atb.account.UsersActivity;
+import com.example.atb.databinding.ActivityLoginBinding;
+import com.example.atb.databinding.ActivityMainBinding;
+import com.example.atb.network.BaseActivity;
 import com.example.atb.network.account.AccountService;
 import com.example.atb.network.account.dto.AccountResponseDTO;
 import com.example.atb.network.account.dto.RegisterDTO;
@@ -31,63 +34,67 @@ import com.google.gson.Gson;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import lombok.NonNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public  class MainActivity extends BaseActivity {
+    ActivityMainBinding binding;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding=ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        setActivityTitle("Main");
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent;
-        switch (item.getItemId()) {
-            case R.id.m_register:
-                try {
-                    intent = new Intent(MainActivity.this, RegisterActivity.class);
-                    startActivity(intent);
-                }
-                catch(Exception ex) {
-                    System.out.println("Problem "+ ex.getMessage());
-                }
-                return true;
-            case R.id.m_users:
-                try {
-                    intent = new Intent(MainActivity.this, UsersActivity.class);
-                    startActivity(intent);
-                }
-                catch(Exception ex) {
-                    System.out.println("Problem "+ ex.getMessage());
-                }
-                return true;
-            case R.id.m_login:
-                try {
-                    intent = new Intent(MainActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                }
-                catch(Exception ex) {
-                    System.out.println("Problem "+ ex.getMessage());
-                }
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.main, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        Intent intent;
+//        switch (item.getItemId()) {
+//            case R.id.m_register:
+//                try {
+//                    intent = new Intent(this, RegisterActivity.class);
+//                    startActivity(intent);
+//                }
+//                catch(Exception ex) {
+//                    System.out.println("Problem "+ ex.getMessage());
+//                }
+//                return true;
+//            case R.id.m_users:
+//                try {
+//                    intent = new Intent(this, UsersActivity.class);
+//                    startActivity(intent);
+//                }
+//                catch(Exception ex) {
+//                    System.out.println("Problem "+ ex.getMessage());
+//                }
+//                return true;
+//            case R.id.m_login:
+//                try {
+//                    intent = new Intent(this, LoginActivity.class);
+//                    startActivity(intent);
+//                }
+//                catch(Exception ex) {
+//                    System.out.println("Problem "+ ex.getMessage());
+//                }
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//
+//    }
 
 }

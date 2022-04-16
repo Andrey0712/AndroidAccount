@@ -19,6 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.atb.MainActivity;
 import com.example.atb.R;
 import com.example.atb.application.HomeApplication;
+import com.example.atb.databinding.ActivityLoginBinding;
+import com.example.atb.databinding.ActivityRegisterBinding;
+import com.example.atb.network.BaseActivity;
 import com.example.atb.network.account.AccountService;
 import com.example.atb.network.account.dto.AccountResponseDTO;
 import com.example.atb.network.account.dto.RegisterDTO;
@@ -35,7 +38,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends BaseActivity {
+    ActivityRegisterBinding binding;
 
     private TextView tvInfo;
     private TextInputLayout textFieldEmail;
@@ -64,7 +68,9 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        binding= ActivityRegisterBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        setActivityTitle("Register");
 
         tvInfo=findViewById(R.id.tvInfo);
         textFieldEmail=findViewById(R.id.textFieldEmail);
@@ -153,6 +159,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         if (!validationFields(registerDTO))
                             return;
+
 
                         AccountService.getInstance()
                                 .jsonApi()

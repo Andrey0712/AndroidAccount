@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.atb.MainActivity;
 import com.example.atb.R;
 import com.example.atb.application.HomeApplication;
+import com.example.atb.databinding.ActivityLoginBinding;
+import com.example.atb.network.BaseActivity;
 import com.example.atb.network.account.AccountService;
 import com.example.atb.network.account.dto.AccountResponseDTO;
 import com.example.atb.network.account.dto.LoginDto;
@@ -23,7 +25,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
+    ActivityLoginBinding binding;
+
     private TextView tvInfoLogin;
     private TextInputLayout textInputLoginEmail;
     private TextInputEditText txtLoginEmail;
@@ -36,7 +40,9 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        binding=ActivityLoginBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        setActivityTitle("Login");
 
         tvInfoLogin=findViewById(R.id.tvInfoLogin);
         textInputLoginEmail=findViewById(R.id.textInputLoginEmail);
