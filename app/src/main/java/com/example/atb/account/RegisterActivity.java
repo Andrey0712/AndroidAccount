@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -185,8 +186,12 @@ public class RegisterActivity extends BaseActivity {
 
                                     @Override
                                     public void onFailure(Call<AccountResponseDTO> call, Throwable t) {
-                                        String str = t.toString();
-                                        int a = 12;
+                                        //String str = t.toString();
+                                        t.printStackTrace();//печатает места, где произошло исключение в исходном коде
+                                        Toast.makeText(RegisterActivity.this,
+                                                "Помилка : " + t.getMessage(),
+                                                Toast.LENGTH_LONG).show();
+
                                     }
                                 });
                         //buttonStart2.setEnabled(false);
